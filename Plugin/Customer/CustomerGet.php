@@ -12,7 +12,6 @@ class CustomerGet
      * @param CustomerRepositoryInterface $subject
      * @param CustomerInterface $entity
      * @return CustomerInterface
-     * @throws \Zend_Db_Statement_Exception
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterGet(
@@ -26,7 +25,6 @@ class CustomerGet
      * @param CustomerRepositoryInterface $subject
      * @param CustomerCollection $result
      * @return CustomerCollection
-     * @throws \Zend_Db_Statement_Exception
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function afterGetList(

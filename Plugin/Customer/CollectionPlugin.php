@@ -3,6 +3,7 @@
 namespace SpringImport\CustomersOrdersCount\Plugin\Customer;
 
 use Magento\Framework\DB\Select;
+use Magento\Framework\DB\Sql\Expression;
 
 class CollectionPlugin
 {
@@ -10,7 +11,6 @@ class CollectionPlugin
      * @param \Magento\Customer\Model\ResourceModel\Customer\Collection $subject
      * @param $result
      * @return mixed
-     * @throws \Zend_Db_Select_Exception
      */
     public function afterGetSelectCountSql(\Magento\Customer\Model\ResourceModel\Customer\Collection $subject, $result)
     {
@@ -53,7 +53,7 @@ class CollectionPlugin
             $columns = ['orders_count_results.orders_count as orders_count'];
         }
 
-        $subQuery = new \Zend_Db_Expr("(
+        $subQuery = new Expression("(
             SELECT customer_id, COUNT(sales_order.entity_id) AS `orders_count`
             FROM $orderTable
             GROUP BY customer_id
@@ -70,7 +70,6 @@ class CollectionPlugin
      * @param Select $select
      * @param $field
      * @return bool
-     * @throws \Zend_Db_Select_Exception
      */
     protected function checkWhereConditionExists(Select $select, $field)
     {
